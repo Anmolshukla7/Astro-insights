@@ -1,31 +1,35 @@
-<html>
-    <head><title>Astrologer app</title>
-    <link rel ="stylesheet" href ="./astrologer.css"></head>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Astrologer App - Astro Insights</title>
+        <link rel="stylesheet" href="./astrologer.css">
+    </head>
     <body>
         <div class="container">
-            <h1> Astrologer Website</h1>
-            <form id ="astroform">
-                <label for = "name">First Name</label>
-                <input type ="text" id ="name" name ="name" required>
+            <h1>Astrologer Website</h1>
+            <form id="astroform">
+                <label for="name">First Name</label>
+                <input type="text" id="name" name="name" placeholder="Enter first name" required>
 
-                <label for ="Surname">Surname</label>
-                <input type = "text" id ="surname" name ="surname" required>
+                <label for="surname">Surname</label>
+                <input type="text" id="surname" name="surname" placeholder="Enter surname" required>
 
-                <label for ="day">Date of Birth(day)</label>
-                <input type ="number" id ="day" name ="day" min ="1" max ='31' required>
+                <label for="day">Date of Birth (Day)</label>
+                <input type="number" id="day" name="day" min="1" max="31" placeholder="DD" required>
 
-                <label for ="month">Month:</label>
-                <input  type ="number" id ="month" name ="month" min ="1" max ="12" required>
+                <label for="month">Month</label>
+                <input type="number" id="month" name="month" min="1" max="12" placeholder="MM" required>
 
-                <label for ="year">year</label>
-                <input type ="number" id ="year" name ="year" min="1990" max ="2025">
+                <label for="year">Year</label>
+                <input type="number" id="year" name="year" min="1900" max="2026" placeholder="YYYY" required>
 
-                <input type ="submit" value ="get Insights">
-
+                <input type="submit" value="Get Insights">
             </form>
             <div class="result" id="result"></div>
-    </div>
+        </div>
         
-        <script src ="./astrologer.js"></script>
+        <script src="./astrologer.js"></script>
     </body>
 </html>

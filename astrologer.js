@@ -124,35 +124,45 @@ const predictions = [
     "You will leave a legacy of inspiration."
 ];
 
-const form =document.getElementById('astroform');
-form.addEventListener('submit',(e)=>{
+const form = document.getElementById('astroform');
+form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    const name =document.getElementById('name').value;
-    const surname =document.getElementById('surname').value;
-    const day = parseInt(document.getElementById('day').value);
-    const month =parseInt(document.getElementById('month').value);
-    const year = parseInt(document.getElementById('year').value);
-     if (day < 1 || day > 31) {
-        alert("Invalid day");
+    const name = document.getElementById('name').value.trim();
+    const surname = document.getElementById('surname').value.trim();
+    const day = parseInt(document.getElementById('day').value, 10);
+    const month = parseInt(document.getElementById('month').value, 10);
+    const year = parseInt(document.getElementById('year').value, 10);
+
+    if (isNaN(day) || day < 1 || day > 31) {
+        alert("Please enter a valid day between 1 and 31.");
         return;
     }
 
-    if (month < 1 || month > 12) {
-        alert("Invalid month");
+    if (isNaN(month) || month < 1 || month > 12) {
+        alert("Please enter a valid month between 1 and 12.");
         return;
     }
 
-    if (year < 1900 || year > 2100) {
-        alert("Invalid year");
+    if (isNaN(year) || year < 1900 || year > 2100) {
+        alert("Please enter a valid year between 1900 and 2100.");
         return;
     }
 
-     const text = `Hi ${name} ${surname}, Your Zodiac sign is ${zodiacSigns[month-1]}
-    . ${compliments[day-1]}. ${victimCardCompliments[year%20]}. ${recommendations[(day*month)%30]}.
-    ${predictions[(name.length*surname.length)%20]}`;
+    const zodiacSign = zodiacSigns[month - 1];
+    const compliment = compliments[(day - 1) % compliments.length];
+    const victimCard = victimCardCompliments[year % victimCardCompliments.length];
+    const recommendation = recommendations[(day * month) % recommendations.length];
+    const prediction = predictions[(name.length * surname.length) % predictions.length];
 
-    document.getElementById('result').textContent = text;
+    const resultElement = document.getElementById('result');
+    resultElement.innerHTML = `
+        <p><strong>Hi ${name} ${surname},</strong></p>
+        <p>✨ <strong>Zodiac Sign:</strong> ${zodiacSign}</p>
+        <p>🌟 <strong>Compliment:</strong> ${compliment}</p>
+        <p>💭 <strong>Insight:</strong> ${victimCard}</p>
+        <p>💡 <strong>Recommendation:</strong> ${recommendation}</p>
+        <p>🔮 <strong>Prediction:</strong> ${prediction}</p>
+    `;
     form.reset();
-
 });
